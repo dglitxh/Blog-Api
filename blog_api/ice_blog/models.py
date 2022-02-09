@@ -1,0 +1,62 @@
+from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
+
+# Create your models here.
+class Post(models.Model):
+    STATUS_CHOICES = (
+        ('draft', 'Draft'),
+        ('published', 'Published')
+    )
+    CATEGORY_CHOICES = (
+        ('science', 'Science'),
+        ('tech', 'Tech'),
+        ('health', 'Health'),
+        ('fashion', 'Fashion'),
+        ('beauty', 'beauty'),
+        ('arts & lifestyle', 'Arts & Lifesyle'),
+        ('news', 'News'),
+
+    )
+
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250,
+                            unique_for_date='publish')
+    author = models.ForeignKey(User,
+                                on_delete=models.CASCADE,
+                                related_name='blog_posts')
+    body = models.TextField()
+    post_category = models.CharField(max_length=20,
+                                    choices=CATEGORY_CHOICES,)
+    publish = models.DateTimeField(default=timezone.now)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=10,
+                                choices=STATUS_CHOICES,
+                                default='draft')
+                                
+    class Meta:
+        ordering = ('-publish',)
+
+    def __str__(self):
+        return self.title
+                            
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post,
+                            on_delete=models.CASCADE,
+                            related_name='comments')
+    name = models.ForeignKey(User,
+                            on_delete=models.CASCADE,
+                            related_name='blog_comment')
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+
+
+    class Meta:
+        ordering = ('created',)
+    
+    def __str__(self):
+        return f'Comment by {self.name} on {self.post}'
