@@ -2,7 +2,7 @@ from cgitb import lookup
 from django.shortcuts import render
 from rest_framework import generics
 from .models import Post, Comment
-from .serializers import PostListSerializer, PostDetailSerializer
+from .serializers import CommentSerializer, PostListSerializer, PostDetailSerializer
 
 # Create your views here.
 
@@ -15,3 +15,6 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostDetailSerializer
 
+class CommentList(generics.ListCreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer

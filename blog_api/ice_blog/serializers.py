@@ -1,4 +1,4 @@
-
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Post, Comment
 
@@ -39,5 +39,14 @@ class CommentSerializer(serializers.ModelSerializer):
             'name',
             'body',
             'active'
+        ]
 
+class UserSerializer(serializers.ModelSerializer):
+    posts = serializers.PrimaryKeyRelatedField(many=True, queryset=Post.objects.all())
+    class Meta:
+        model = User
+        fields = [
+           'id',
+           'username',
+           'posts',
         ]

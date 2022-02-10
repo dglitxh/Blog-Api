@@ -5,5 +5,6 @@ app_name = 'ice_blog'
 
 urlpatterns = [
     path('posts/', views.PostList.as_view(), name='posts'),
-    path('posts/<int:id>', views.PostDetail.as_view(), name='post_detail')
+    path('posts/<int:id>', views.PostDetail.as_view(), name='post_detail'),
+    path('comments/', views.CommentList.as_view(), name='comments'),
 ]
