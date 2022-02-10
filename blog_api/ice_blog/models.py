@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -8,14 +9,16 @@ class Post(models.Model):
         ('draft', 'Draft'),
         ('published', 'Published')
     )
+    
     CATEGORY_CHOICES = (
         ('science', 'Science'),
         ('tech', 'Tech'),
         ('health', 'Health'),
         ('fashion', 'Fashion'),
-        ('beauty', 'beauty'),
+        ('beauty', 'Beauty'),
         ('arts & lifestyle', 'Arts & Lifesyle'),
         ('news', 'News'),
+        ('fiction', 'Fiction'),
 
     )
 
@@ -28,6 +31,7 @@ class Post(models.Model):
     body = models.TextField()
     post_category = models.CharField(max_length=20,
                                     choices=CATEGORY_CHOICES,)
+    thumbnail = models.ImageField(upload_to='thumbnails', blank=True)
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
