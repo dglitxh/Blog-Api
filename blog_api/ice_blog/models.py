@@ -50,7 +50,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post,
                             on_delete=models.CASCADE,
                             related_name='comments')
-    name = models.ForeignKey(User,
+    name = models.ForeignKey('auth.User',
                             on_delete=models.CASCADE,
                             related_name='blog_comment')
     body = models.TextField()
