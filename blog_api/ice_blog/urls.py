@@ -1,10 +1,14 @@
 from django.urls import path
 from . import views
+from rest_framework.routers import SimpleRouter
 
 app_name = 'ice_blog'
 
-urlpatterns = [
-    path('posts', views.PostList.as_view(), name='posts'),
-    path('posts/<int:id>', views.PostDetail.as_view(), name='post_detail'),
-    path('comments/', views.CommentList.as_view(), name='comments'),
-]
+router = SimpleRouter()
+router.register('comments', views.CommentViewSet, basename='comments')
+router.register('users', views.UserViewSet, basename='users')
+router.register('', views.PostViewSet, basename='posts')
+
+
+
+urlpatterns = router.urls

@@ -27,7 +27,7 @@ class Post(models.Model):
                             unique_for_date='publish')
     author = models.ForeignKey(User,
                                 on_delete=models.CASCADE,
-                                related_name='blog_posts')
+                                related_name='posts')
     body = models.TextField()
     post_category = models.CharField(max_length=20,
                                     choices=CATEGORY_CHOICES,)
@@ -49,14 +49,13 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post,
                             on_delete=models.CASCADE,
-                            related_name='comments')
-    name = models.ForeignKey('auth.User',
+                            related_name='posts')
+    name = models.ForeignKey(User,
                             on_delete=models.CASCADE,
-                            related_name='blog_comment')
+                            related_name='comments')
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    active = models.BooleanField(default=True)
 
 
     class Meta:
