@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # my apps
-    'ice_blog',
+    'ice_blog.apps.IceBlogConfig',
 
     # 3rd Party
     'rest_framework',
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'drf_spectacular'
 ]
 
 REST_FRAMEWORK = {
@@ -62,6 +63,14 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
+    'DEFAULT_SCHEMA_CLASS': "drf_spectacular.openapi.AutoSchema", 
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'IceBlog API',
+    'DESCRIPTION': 'A simple blog api made with energy drinks, sweat and tears by YD',
+    'VERSION': '1.0.0',
+    # OTHER SETTINGS
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -83,7 +92,7 @@ ROOT_URLCONF = 'blog_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

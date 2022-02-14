@@ -16,17 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.schemas import get_schema_view
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('ice_blog.urls', namespace='blog')),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('api/dj-rest-auth/registration/', 
-        include('dj_rest_auth.registration.urls')),
-    path('openapi', get_schema_view(
-                title="Blog API",
-                description="A simple blog api made by ydzzy",
-                version="1.0.0"
-                ), name='openapi-schema'),
+    path('api/auth/', include('dj_rest_auth.urls')),
+    path('api/auth/registration/', include('dj_rest_auth.registration.urls')),
+    path("schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "docs/",
+        SpectacularSwaggerView.as_view(
+            template_name="swagger-ui.html", url_name="schema"
+        ),
+        name="swagger-ui",
+    ),
+     path('redoc/', SpectacularRedocView.as_view(
+        template_name='redoc.html', url_name="schema"
+    ), name='redoc'),
 ]
