@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from .secrets import secret_key
 import os
-import django_heroku
+import django_on_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,7 +70,7 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'IceBlog API',
-    'DESCRIPTION': 'A simple blog api made with energy drinks, sweat and tears by YD',
+    'DESCRIPTION': 'A simple blog api made with blood, sweat and tears by YD',
     'VERSION': '1.0.0',
     # OTHER SETTINGS
 }
@@ -163,4 +163,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+django_on_heroku.settings(locals())
