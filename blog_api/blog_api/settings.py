@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-from secrets import secret_key
+
 import os
 import django_on_heroku
 import dj_database_url
