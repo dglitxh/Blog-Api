@@ -1,1 +1,1 @@
-web: gunicorn iyceblog.wsgi
+web: gunicorn IceBlog.wsgi
