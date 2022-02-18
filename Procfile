@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:8000 iyceblog.wsgi:application
+web: gunicorn --bind 0.0.0.0:8000 wsgi:application
