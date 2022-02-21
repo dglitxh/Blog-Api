@@ -7,8 +7,6 @@ app_name = 'ice_blog'
 router = SimpleRouter()
 router.register('comments', views.CommentViewSet, basename='comments')
 router.register('users', views.UserViewSet, basename='users')
-router.register('', views.PostViewSet, basename='posts')
-
-
+router.register('posts', views.PostViewSet, basename='posts')
 
 urlpatterns = router.urls
