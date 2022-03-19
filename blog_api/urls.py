@@ -36,3 +36,4 @@ urlpatterns = [
         template_name='redoc.html', url_name="schema"
     ), name='redoc'),
 ]
+
