@@ -162,7 +162,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / "staticfiles"
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'thumbnails'),
+)
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'thumbnails')
 MEDIA_URL = '/media/'
 
 
