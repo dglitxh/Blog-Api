@@ -165,8 +165,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'thumbnails'),
 )
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'thumbnails')
-MEDIA_URL = '/media/'
+
 
 
 # Default primary key field type
