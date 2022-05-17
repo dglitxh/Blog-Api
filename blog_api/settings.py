@@ -72,7 +72,7 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'IceBlog API',
-    'DESCRIPTION': 'A simple blog api made with blood, sweat and tears by YD',
+    'DESCRIPTION': 'A blog API made by </YD>',
     'VERSION': '1.0.0',
     # OTHER SETTINGS
 }
